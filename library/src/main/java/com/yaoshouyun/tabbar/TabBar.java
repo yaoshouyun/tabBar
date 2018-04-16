@@ -29,6 +29,7 @@ public class TabBar extends LinearLayout {
     private int[] defaultIcons;//Tab未选中图标样式
     private int[] selectedIcons;//Tab选中图标样式
 
+    private List<Fragment> fragments;
     private RadioGroup radioGroup;
     private FragmentActivity activity;
 
@@ -70,6 +71,15 @@ public class TabBar extends LinearLayout {
             radio.setPadding(dp2px(5), dp2px(5), dp2px(5), dp2px(5));
             radioGroup.addView(radio, width, ViewGroup.LayoutParams.MATCH_PARENT);
         }
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(checkedId)).commit();
+                if (tabBarListenter != null) {
+                    tabBarListenter.onChange(checkedId);
+                }
+            }
+        });
     }
 
     private int[] getIdsArray(int resId) {
@@ -92,17 +102,24 @@ public class TabBar extends LinearLayout {
         return (int) Math.ceil(dpValue * getContext().getResources().getDisplayMetrics().density);
     }
 
-    public void setFragments(final List<Fragment> fragments) {
-        if (radioGroup.getChildCount() != fragments.size()) {
-            throw new RuntimeException("资源数量不匹配！");
-        }
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragments.get(checkedId)).commit();
-            }
-        });
+    public void setFragments(List<Fragment> fragments) {
+        this.fragments = fragments;
         radioGroup.check(0);
+    }
+
+//    public void check(int index) {
+////        ((RadioButton) radioGroup.getChildAt(index)).setChecked(true);
+//
+//    }
+
+    private OnTabBarListenter tabBarListenter;
+
+    public void setOnTabBarListenter(OnTabBarListenter tabBarListenter) {
+        this.tabBarListenter = tabBarListenter;
+    }
+
+    public interface OnTabBarListenter {
+        void onChange(int index);
     }
 
 }

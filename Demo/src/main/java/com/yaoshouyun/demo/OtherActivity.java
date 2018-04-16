@@ -17,6 +17,7 @@ public class OtherActivity extends BaseActivity {
         getContentView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 EventManager.post("OtherActivity");
             }
         });

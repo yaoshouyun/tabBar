@@ -1,7 +1,7 @@
 package com.yaoshouyun.demo;
 
 import android.support.v4.app.Fragment;
-import android.widget.Toast;
+import android.util.Log;
 
 import com.yaoshouyun.amanager.EventManager;
 import com.yaoshouyun.aview.BaseActivity;
@@ -15,6 +15,8 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
+    private TabBar tabBar;
+
     @Override
     public int layoutId() {
         return R.layout.activity_main;
@@ -22,19 +24,26 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initUiAndListener() {
-        List<Fragment> fragments = new ArrayList<>();
+        final List<Fragment> fragments = new ArrayList<>();
         fragments.add(new FragmentA());
         fragments.add(new FragmentB());
         fragments.add(new FragmentC());
         fragments.add(new FragmentD());
-        TabBar tabBar = findViewById(R.id.tabBar);
+        tabBar = findViewById(R.id.tabBar);
+        tabBar.setOnTabBarListenter(new TabBar.OnTabBarListenter() {
+            @Override
+            public void onChange(int index) {
+                Log.d("tabBar", "index=" + index);
+//                Toast.makeText(MainActivity.this, "index=" + index, Toast.LENGTH_SHORT).show();
+            }
+        });
         tabBar.setFragments(fragments);
         EventManager.register(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(String event) {
-        Toast.makeText(this, event, Toast.LENGTH_SHORT).show();
+        Log.d("tabBar", "event");
     }
 
 }
