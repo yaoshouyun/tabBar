@@ -16,6 +16,7 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
 
     private TabBar tabBar;
+    private List<Fragment> fragments;
 
     @Override
     public int layoutId() {
@@ -24,13 +25,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initUiAndListener() {
-        final List<Fragment> fragments = new ArrayList<>();
+        fragments = new ArrayList<>();
         fragments.add(new FragmentA());
         fragments.add(new FragmentB());
         fragments.add(new FragmentC());
         fragments.add(new FragmentD());
         tabBar = findViewById(R.id.tabBar);
-        tabBar.setOnTabBarListenter(new TabBar.OnTabBarListenter() {
+        tabBar.setOnTabBarChangeListenter(new TabBar.OnTabBarChangeListenter() {
             @Override
             public void onChange(int index) {
                 Log.d("tabBar", "index=" + index);
@@ -44,6 +45,8 @@ public class MainActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(String event) {
         Log.d("tabBar", "event");
+//        tabBar.radioGroup.check(tabBar.radioGroup.getChildAt(1).getId());
+//        replaceFragment(R.id.frameLayout,fragments.get(1));
     }
 
 }

@@ -30,8 +30,9 @@ public class TabBar extends LinearLayout {
     private int[] selectedIcons;//Tab选中图标样式
 
     private List<Fragment> fragments;
-    private RadioGroup radioGroup;
+    public RadioGroup radioGroup;
     private FragmentActivity activity;
+    private Fragment currentFragment;
 
     public TabBar(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -74,9 +75,12 @@ public class TabBar extends LinearLayout {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(checkedId)).commit();
-                if (tabBarListenter != null) {
-                    tabBarListenter.onChange(checkedId);
+                if (currentFragment != fragments.get(checkedId)) {
+                    currentFragment = fragments.get(checkedId);
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, currentFragment).commit();
+                    if (tabBarListenter != null) {
+                        tabBarListenter.onChange(checkedId);
+                    }
                 }
             }
         });
@@ -107,18 +111,13 @@ public class TabBar extends LinearLayout {
         radioGroup.check(0);
     }
 
-//    public void check(int index) {
-////        ((RadioButton) radioGroup.getChildAt(index)).setChecked(true);
-//
-//    }
+    private OnTabBarChangeListenter tabBarListenter;
 
-    private OnTabBarListenter tabBarListenter;
-
-    public void setOnTabBarListenter(OnTabBarListenter tabBarListenter) {
+    public void setOnTabBarChangeListenter(OnTabBarChangeListenter tabBarListenter) {
         this.tabBarListenter = tabBarListenter;
     }
 
-    public interface OnTabBarListenter {
+    public interface OnTabBarChangeListenter {
         void onChange(int index);
     }
 
