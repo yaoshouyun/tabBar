@@ -1,0 +1,66 @@
+ext {
+
+    android = [
+            compileSdkVersion: 26,
+            minSdkVersion    : 19,
+            targetSdkVersion : 26,
+            versionCode      : 1,
+            versionName      : '1.0.0',
+    ]
+
+    butterknife = [
+            //地址：https://github.com/JakeWharton/butterknife
+            //配置一：classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
+            //配置二：apply plugin: 'com.jakewharton.butterknife'
+            butterknife        : 'com.jakewharton:butterknife:8.5.1',
+            butterknifeCompiler: 'com.jakewharton:butterknife-compiler:8.5.1',
+    ]
+
+    dagger = [
+            //地址：https://github.com/google/dagger
+            annotationApi      : 'javax.annotation:javax.annotation-api:1.2',
+            dagger             : 'com.google.dagger:dagger:2.0.2',
+            daggerCompiler     : 'com.google.dagger:dagger-compiler:2.0.2',
+    ]
+
+    arouter = [
+            //地址：https://github.com/alibaba/ARouter
+            arouterApi         : 'com.alibaba:arouter-api:1.3.1',
+            arouterCompiler    : 'com.alibaba:arouter-compiler:1.1.4',
+    ]
+
+    dependencies = [
+            appcompatV7        : 'com.android.support:appcompat-v7:26.1.0',
+            recyclerviewV7     : 'com.android.support:recyclerview-v7:26.1.0',
+            design             : 'com.android.support:design:26.1.0',
+
+            multidex            : 'com.android.support:multidex:1.0.2',
+
+
+
+//            butterknife        : 'com.jakewharton:butterknife:8.8.1',
+//            butterknifeCompiler: 'com.jakewharton:butterknife-compiler:8.8.1',
+
+
+
+            circleimageview    : 'de.hdodenhof:circleimageview:2.0.0',
+
+            androidGifDrawable : 'pl.droidsonroids.gif:android-gif-drawable:1.2.10',
+
+            rxpermissions      : 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar',
+            viewPagerHelper    : 'com.github.LillteZheng:ViewPagerHelper:v0.5',
+
+            rxpermissions    : 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar',
+
+            rxandroid    : 'io.reactivex:rxandroid:1.2.1',
+            rxjava    : 'io.reactivex:rxjava:1.2.0',
+
+            logger    : 'com.orhanobut:logger:1.15',
+            eventbus    : 'org.greenrobot:eventbus:3.0.0',
+            glide    : 'com.github.bumptech.glide:glide:3.7.0',
+            retrofit    : 'com.squareup.retrofit2:retrofit:2.3.0',
+            converterGson    : 'com.squareup.retrofit2:converter-gson:2.3.0',
+            album    : 'com.yanzhenjie:album:2.0.2',
+    ]
+
+}

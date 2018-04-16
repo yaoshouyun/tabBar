@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TabBar">
+        <attr name="defaultColor" format="color|reference" />
+        <attr name="selectedColor" format="color|reference" />
+        <attr name="tabNames" format="reference" />
+        <attr name="defaultIcons" format="reference" />
+        <attr name="selectedIcons"  format="reference" />
+    </declare-styleable>
+
+</resources>
