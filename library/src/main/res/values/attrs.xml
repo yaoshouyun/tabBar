@@ -7,6 +7,7 @@
         <attr name="tabNames" format="reference" />
         <attr name="defaultIcons" format="reference" />
         <attr name="selectedIcons"  format="reference" />
+        <attr name="centerIcon"  format="reference" />
     </declare-styleable>
 
 </resources>

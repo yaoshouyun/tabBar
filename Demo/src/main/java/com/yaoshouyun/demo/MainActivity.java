@@ -38,6 +38,12 @@ public class MainActivity extends BaseActivity {
 //                Toast.makeText(MainActivity.this, "index=" + index, Toast.LENGTH_SHORT).show();
             }
         });
+        tabBar.setOnCenterClickListenter(new TabBar.OnCenterClickListenter() {
+            @Override
+            public void onClick() {
+                Log.d("tabBar", "onClick");
+            }
+        });
         tabBar.setFragments(fragments);
         EventManager.register(this);
     }

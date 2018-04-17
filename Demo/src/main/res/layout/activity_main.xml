@@ -8,6 +8,5 @@
     app:defaultIcons="@array/defaultIcons"
     app:selectedColor="#ff0000"
     app:selectedIcons="@array/selectedIcons"
-    app:tabNames="@array/tabNames">
-
-</com.yaoshouyun.tabbar.TabBar>
+    app:tabNames="@array/tabNames"
+    app:centerIcon="@mipmap/add"/>

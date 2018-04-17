@@ -1,6 +1,7 @@
 # tabBar
 tabBar android底部导航控件
 
+```xml
 
 <?xml version="1.0" encoding="utf-8"?>
 <com.yaoshouyun.tabbar.TabBar xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,28 +13,28 @@ tabBar android底部导航控件
     app:defaultIcons="@array/defaultIcons"
     app:selectedColor="#ff0000"
     app:selectedIcons="@array/selectedIcons"
-    app:tabNames="@array/tabNames">
+    app:tabNames="@array/tabNames"
+    app:centerIcon="@mipmap/add"/>
 
-</com.yaoshouyun.tabbar.TabBar>
+<string-array name="tabNames">
+    <item>抢红包</item>
+    <item>发红包</item>
+    <item>我的红包</item>
+    <item>个人中心</item>
+</string-array>
 
+<string-array name="defaultIcons">
+    <item>@mipmap/radio_grab_n</item>
+    <item>@mipmap/radio_give_n</item>
+    <item>@mipmap/radio_my_n</item>
+    <item>@mipmap/radio_mine_n</item>
+</string-array>
 
-    <string-array name="tabNames">
-        <item>抢红包</item>
-        <item>发红包</item>
-        <item>我的红包</item>
-        <item>个人中心</item>
-    </string-array>
+<string-array name="selectedIcons">
+    <item>@mipmap/radio_grab_p</item>
+    <item>@mipmap/radio_give_p</item>
+    <item>@mipmap/radio_my_p</item>
+    <item>@mipmap/radio_mine_p</item>
+</string-array>
 
-    <string-array name="defaultIcons">
-        <item>@mipmap/radio_grab_n</item>
-        <item>@mipmap/radio_give_n</item>
-        <item>@mipmap/radio_my_n</item>
-        <item>@mipmap/radio_mine_n</item>
-    </string-array>
-
-    <string-array name="selectedIcons">
-        <item>@mipmap/radio_grab_p</item>
-        <item>@mipmap/radio_give_p</item>
-        <item>@mipmap/radio_my_p</item>
-        <item>@mipmap/radio_mine_p</item>
-    </string-array>
+```
