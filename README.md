@@ -38,3 +38,5 @@ tabBar android底部导航控件
 </string-array>
 
 ```
+
+![avatar](/demo.png)

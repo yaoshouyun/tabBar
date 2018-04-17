@@ -1,5 +1,6 @@
 package com.yaoshouyun.demo;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
@@ -42,6 +43,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick() {
                 Log.d("tabBar", "onClick");
+                startActivity(new Intent(MainActivity.this, OtherActivity.class));
             }
         });
         tabBar.setFragments(fragments);
