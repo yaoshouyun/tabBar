@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -84,14 +85,28 @@ public class TabBar extends LinearLayout {
             topDrawable.addState(new int[]{}, getResources().getDrawable(defaultIcons[i]));
             topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
             radio.setCompoundDrawables(null, topDrawable, null, null);
-            radioGroup.addView(radio,  new RadioGroup.LayoutParams(width, RadioGroup.LayoutParams.MATCH_PARENT));
+            radioGroup.addView(radio, new RadioGroup.LayoutParams(width, RadioGroup.LayoutParams.MATCH_PARENT));
         }
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (currentFragment != fragments.get(checkedId)) {
-                    currentFragment = fragments.get(checkedId);
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, currentFragment).commit();
+                if (fragments.size() <= checkedId) {
+                    return;
+                }
+                Fragment newFragment = fragments.get(checkedId);
+                if (currentFragment != newFragment) {
+                    FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                    if (currentFragment != null && currentFragment.isAdded()) {
+                        transaction.hide(currentFragment);
+                        currentFragment.setUserVisibleHint(false);
+                    }
+                    if (!newFragment.isAdded()) {
+                        transaction.add(R.id.frameLayout, newFragment);
+                    }
+                    transaction.show(newFragment);
+                    newFragment.setUserVisibleHint(true);
+                    transaction.commit();
+                    currentFragment = newFragment;
                     if (tabBarListenter != null) {
                         tabBarListenter.onChange(checkedId);
                     }
